@@ -62,8 +62,11 @@ nothing about `model.go`, `model_orm.go`, or assets.
 
 ## Constraints
 
-- **Tool-side only.** Every file carries `//go:build !wasm` — `os/exec` + `go list` never run in
-  WASM; a WASM consumer that transitively imports the module still builds.
+- **Compiles everywhere, runs tool-side only.** No build tags: `os/exec`/`encoding/json` etc. all
+  compile under `GOARCH=wasm`, so importers (`ssr`, `image`, `ormc`) that are themselves compile-
+  checked under wasm keep building. `Discover` is only ever **called** by tool-side code (never by a
+  shipped wasm client), so `go list` never runs in a browser. (An earlier `//go:build !wasm` tag was
+  removed: it made the package empty under wasm and broke every untagged importer's wasm build.)
 - **Minimal dependencies.** Stdlib + `github.com/tinywasm/fmt` only. `modfind` sits **below** `ssr`,
   `assetmin`, `image`, and `ormc` in the graph and must never import `devflow`, `depfind`, or any
   heavy package.

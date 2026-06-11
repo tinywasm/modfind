@@ -10,7 +10,8 @@ copy-pasted in `ssr`, `image/min`, and `imagemin`.
 
 Sibling to [`depfind`](https://github.com/tinywasm/depfind): `depfind` maps the **package import
 graph** ("which main to recompile"); `modfind` enumerates **modules** ("where each module lives, and
-may I write there"). Tool-side only (`//go:build !wasm`); deps: stdlib + `tinywasm/fmt`.
+may I write there"). Called only by tool-side code (compiles everywhere, no build tags); deps:
+stdlib + `tinywasm/fmt`.
 
 ## Usage
 
