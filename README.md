@@ -47,4 +47,7 @@ into each (ssr, image, ormc) so `go list` runs a single time per session.
 
 ## Docs
 
-- [docs/PLAN.md](docs/PLAN.md) — implementation plan, classification rules, test strategy.
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — what modfind is: the `Module` model, the
+  writable/read-only classification, the finder API, and constraints.
+- [docs/DESIGN.md](docs/DESIGN.md) — why a dedicated package (not `depfind`, `devflow`, or `app`) and
+  the duplication it removes.
